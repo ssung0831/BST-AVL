@@ -487,19 +487,14 @@ void BinarySearchTree<Key, Value>::insert(const std::pair<const Key, Value> &key
     }
     
 	Node<Key, Value>* insertedNode = new Node<Key, Value>(keyValuePair.first, keyValuePair.second, potentialParent);
-	//	walker -> setValue(keyValuePair.second);
     
     //go until you find an empty value
     if(potentialParent -> getKey() > keyValuePair.first){
-        // potentialParent -> setLeft(walker);
-        // walker -> setParent(potentialParent);
 		potentialParent -> setLeft(insertedNode);
 		insertedNode -> setParent(potentialParent);
         return;
     }
     else{
-        // potentialParent -> setRight(walker);
-        // walker -> setParent(potentialParent);
 		potentialParent -> setRight(insertedNode);
 		insertedNode -> setParent(potentialParent);
         return;
@@ -534,8 +529,8 @@ void BinarySearchTree<Key, Value>::remove(const Key& key)
 // After swap, we have converted to 0-children or 1-child case (i.e. non-leaf node's
 // successor or predecessor is guaranteed to not have 2 children) which we then perform
 		
-		//0 children: If the value is in a leaf node, simply remove that leaf node
-		if(n -> getLeft() == NULL && n -> getRight() == NULL){
+	//0 children: If the value is in a leaf node, simply remove that leaf node
+	if(n -> getLeft() == NULL && n -> getRight() == NULL){
       //if node is a root node 
        if(n == root_){
           root_ = NULL;
@@ -551,61 +546,61 @@ void BinarySearchTree<Key, Value>::remove(const Key& key)
           else{
             parent -> setRight(NULL);
           }
-				delete n;
-				return;
+		delete n;
+		return;
       }
-		}
+	}
 
-		//1 child: Promote the child into the node's location
-		if((n ->getLeft() != NULL) && (n -> getRight() == NULL)){
-			Node<Key, Value>* parent = n -> getParent();
-			Node<Key, Value>* child = n -> getLeft();
-            if(n == root_){
-                root_ = child;
-                child -> setParent(NULL);
-								delete n;
-								return;
-            }
-            else{
-                if(n == parent -> getLeft()){
-                    parent -> setLeft(child);
-                    child -> setParent(parent);
-                }
-                else{
-                    parent -> setRight(child);
-                    child -> setParent(parent);
-                }
-
-						delete n;
-						return;
-          }
-		}
-
-
-		if ((n -> getLeft() == NULL) && (n -> getRight() != NULL)){
-			Node<Key, Value>* parent = n -> getParent();
-			Node<Key, Value>* child = n -> getRight();
+	//1 child: Promote the child into the node's location
+	if((n ->getLeft() != NULL) && (n -> getRight() == NULL)){
+		Node<Key, Value>* parent = n -> getParent();
+		Node<Key, Value>* child = n -> getLeft();
         if(n == root_){
-					root_ = child;
-          child -> setParent(NULL);
-          delete n;
-					return;
+            root_ = child;
+            child -> setParent(NULL);
+			delete n;
+			return;
         }
         else{
-          if(n == parent -> getLeft()){
+            if(n == parent -> getLeft()){
+                parent -> setLeft(child);
+                 child -> setParent(parent);
+            }
+            else{
+                parent -> setRight(child);
+                child -> setParent(parent);
+            }
+
+			delete n;
+			return;
+        }
+	}
+
+
+	if ((n -> getLeft() == NULL) && (n -> getRight() != NULL)){
+		Node<Key, Value>* parent = n -> getParent();
+		Node<Key, Value>* child = n -> getRight();
+    if(n == root_){
+		root_ = child;
+        child -> setParent(NULL);
+        delete n;
+		return;
+    }
+    else{
+        if(n == parent -> getLeft()){
             parent -> setLeft(child);
             child -> setParent(parent);
-          }
-          else{
+        }
+        else{
             parent -> setRight(child);
             child -> setParent(parent);
-          }
-					delete n;
-					return;
         }
-		}
-
 		delete n;
+		return;
+    }
+}
+
+    delete n;
 
 }
 
@@ -630,10 +625,10 @@ BinarySearchTree<Key, Value>::successor(Node<Key, Value>* node)
 				Node<Key, Value>* temp = node;
 			//if current node is right child of parent, then it is not the successor, keep going
 			while(parent != NULL && parent -> getRight() == temp){
-							temp = parent;
-							parent = parent -> getParent();
-					}
-			return parent;
+				temp = parent;
+				parent = parent -> getParent();
+			}
+		return parent;
      }
 }
 
@@ -682,8 +677,8 @@ template<typename Key, typename Value>
 void BinarySearchTree<Key, Value>::clear()
 {
     // TODO
-		clear_helper(root_);
-		root_ = NULL;
+	clear_helper(root_);
+	root_ = NULL;
 
 }
 
@@ -773,7 +768,6 @@ bool BinarySearchTree<Key, Value>::isBalanced() const
     // TODO
 
     int height = calculateHeightIfBalanced(root_);
-
 
     if(height == -1){
 		return false;
