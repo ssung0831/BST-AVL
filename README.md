@@ -21,7 +21,7 @@ Valgrind:
 valgrind --tool=memcheck --leak-check=yes ./equal-paths-test
 
 
-Part- Implementation of a BST w/ iterator
+Part 3- Implementation of a BST w/ iterator
 
 To run basic testing:
 
@@ -37,4 +37,17 @@ make bst_tests
 
 Valgrind:
 
-valgrind --tool=memcheck --leak-check=yes ./bst-test
+valgrind --tool=memcheck --leak-check=yes ./bst_tests
+
+
+Part 4- Implementation of an AVL
+
+To run in-depth testing:
+
+cd hw4_tests/avl_tests
+make avl_tests
+./avl_tests
+
+Valgrind:
+
+valgrind --tool=memcheck --leak-check=yes ./avl_tests
